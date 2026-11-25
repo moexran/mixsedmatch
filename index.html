@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 90C8 60 4 32 23 19c12-8 24-1 27 9 3-10 15-17 27-9 19 13 15 41-27 71z' fill='%23e8588d' stroke='%238f2552' stroke-width='5' stroke-linejoin='round'/%3E%3Cpath d='M26 30c4-6 11-6 15-1' fill='none' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;600;800&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 :root{--moex-bg:#fff8fb;--moex-paper:#ffffff;--moex-blush:#ffd9e6;--moex-pink:#e8588d;--moex-rose:#b83a6b;--moex-ink:#241520;--moex-soft:#7a5a6b;--moex-line:#f1c3d4;--moex-shadow:0 8px 24px rgba(184,58,107,.15)}
 :root[data-theme="dark"]{--moex-bg:#150d14;--moex-paper:#231620;--moex-blush:#3a2030;--moex-pink:#ff7aa9;--moex-rose:#ffa3c4;--moex-ink:#fbeaf1;--moex-soft:#c9a3b5;--moex-line:#4a2c3d;--moex-shadow:0 8px 24px rgba(0,0,0,.5)}
@@ -30,27 +30,44 @@ button{font:inherit;color:inherit;cursor:pointer}
 .moex-wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 
 /* header */
-.moex-header{position:relative;overflow:hidden;background:var(--moex-hdbg);border-bottom:3px double var(--moex-hdline);padding:22px 0 0;text-align:center}
+.moex-header{position:relative;overflow:hidden;background:var(--moex-hdbg);padding:20px 0 30px;text-align:center}
 .moex-header .moex-wrap{position:relative;z-index:1}
-.moex-title{font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,7vw,3.6rem);margin:0;color:var(--moex-hdtext);text-shadow:0 2px 0 rgba(0,0,0,.18);letter-spacing:.02em;line-height:1.1}
+/* little row of hearts along the bottom edge, like lace on the cover of a book */
+.moex-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;z-index:1;pointer-events:none;opacity:.55;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='14' viewBox='0 0 26 14'%3E%3Cpath d='M13 12C5 7 4 4 6.500 2.300 9 .8 12 2.800 13 5 14 2.800 17 .8 19.500 2.300 22 4 21 7 13 12z' fill='white'/%3E%3C/svg%3E") repeat-x center bottom/26px 14px}
+.moex-eyebrow{margin:0 0 4px;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;font-weight:800;color:var(--moex-hdsoft)}
+.moex-searchrow{display:flex;align-items:center;gap:10px;max-width:590px;margin:0 auto}
+.moex-title{margin:0;line-height:1;text-align:center;color:var(--moex-hdtext)}
+.moex-t1{display:block;font-family:"Pinyon Script","Cormorant Garamond",cursive;font-weight:400;font-size:clamp(1.7rem,6.5vw,2.8rem);color:var(--moex-hdsoft);transform:rotate(-3deg);margin-bottom:-.12em;text-shadow:0 2px 0 rgba(0,0,0,.18)}
+.moex-t2{display:block;font-family:"Cormorant Garamond",serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(1.5rem,6.5vw,3.3rem);text-shadow:0 1px 0 var(--moex-hdsoft),0 3px 0 rgba(0,0,0,.2),0 7px 14px rgba(0,0,0,.25)}
+.moex-flourish{display:block;width:min(260px,70%);height:auto;margin:8px auto 4px;color:var(--moex-hdsoft)}
 .moex-tagline{margin:4px 0 14px;color:var(--moex-hdsoft);font-style:italic}
-.moex-search{display:flex;max-width:520px;margin:0 auto 14px;border:2px solid var(--moex-hdline);border-radius:999px;overflow:hidden;background:var(--moex-paper)}
+.moex-search{display:flex;flex:1;min-width:0;border:2px solid var(--moex-hdline);border-radius:999px;overflow:hidden;background:var(--moex-paper)}
 .moex-search input{flex:1;min-width:0;border:0;background:transparent;color:var(--moex-ink);padding:11px 18px;font:inherit}
 .moex-search input:focus{outline:none}
 .moex-search:focus-within{box-shadow:0 0 0 3px var(--moex-blush)}
 .moex-search span{padding:11px 16px;color:var(--moex-pink)}
-.moex-menu{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,.28)}
-.moex-menu a,.moex-menu button{background:none;border:0;text-decoration:none;color:var(--moex-hdtext);font-weight:800;padding:6px 8px}
-.moex-menu a:hover,.moex-menu button:hover{color:var(--moex-hdsoft);text-decoration:underline}
+/* burger menu */
+.moex-burger{flex:none;width:46px;height:46px;padding:0;border-radius:50%;border:2px solid var(--moex-hdline);background:rgba(255,255,255,.14);color:var(--moex-hdtext);display:grid;place-content:center;gap:5px;transition:background .2s}
+.moex-burger:hover{background:rgba(255,255,255,.3)}
+.moex-burger span{display:block;width:20px;height:2.5px;border-radius:2px;background:currentColor;transition:transform .3s,opacity .2s}
+.moex-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.moex-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.moex-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.moex-menu{display:none;justify-content:center;flex-wrap:wrap;gap:8px;max-width:620px;margin:14px auto 0;padding:12px;border-radius:20px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3)}
+.moex-menu.moex-show{display:flex;animation:moex-drop .25s ease-out}
+.moex-menu a{padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:var(--moex-hdtext);font-weight:800;font-size:.95rem;text-decoration:none;transition:background .2s,color .2s}
+.moex-menu a:hover{background:var(--moex-paper);color:var(--moex-rose)}
 
 /* banner + lore */
-.moex-banner{margin:20px 0;border:3px solid var(--moex-pink);border-radius:20px;overflow:hidden;box-shadow:var(--moex-shadow);aspect-ratio:3/1;min-height:110px;background:linear-gradient(135deg,var(--moex-blush),var(--moex-pink));display:grid;place-items:center;position:relative}
-.moex-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.moex-banner{margin:20px 0;border:2px solid var(--moex-pink);border-radius:18px;overflow:hidden;box-shadow:var(--moex-shadow);min-height:110px;background:linear-gradient(135deg,var(--moex-blush),var(--moex-pink));display:grid;place-items:center}
+.moex-banner img{display:block;width:100%;height:auto}
 .moex-banner b{font-family:"Cormorant Garamond",serif;font-size:1.6rem;color:#fff;text-align:center;padding:8px}
+.moex-banner.moex-has{display:block;min-height:0}
+.moex-banner.moex-has b{display:none}
 .moex-box{background:var(--moex-paper);border:2px solid var(--moex-line);border-radius:18px;padding:18px 20px;box-shadow:var(--moex-shadow);max-height:280px;overflow-y:auto}
 .moex-box h2{font-family:"Cormorant Garamond",serif;margin:0 0 8px;color:var(--moex-rose);font-size:1.8rem}
 .moex-box p{margin:0 0 .8em}
-.moex-sect{font-family:"Cormorant Garamond",serif;font-size:2rem;margin:0 0 10px;color:var(--moex-rose);line-height:1.2}
+.moex-sect{font-family:"Cormorant Garamond",serif;font-size:clamp(1.2rem,4.6vw,1.65rem);margin:0 0 10px;color:var(--moex-rose);line-height:1.2}
 #moex-join .moex-box{max-height:360px}
 /* dropdowns (lore / opposites attract / how to join) */
 .moex-dropsect{margin:0 0 14px}
@@ -62,6 +79,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .moex-drop summary:focus-visible{outline-offset:-5px}
 .moex-drop .moex-sect{margin:0;transition:color .2s}
 .moex-drop summary:hover .moex-sect{color:var(--moex-pink)}
+@media(max-width:520px){.moex-drop summary{padding:10px 12px 10px 16px;gap:8px}.moex-chev{width:32px;height:32px;font-size:1rem}}
 /* heart arrow: tip points right when closed, down when open */
 .moex-chev{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--moex-blush);color:var(--moex-pink);font-size:1.2rem;line-height:1;transform:rotate(-90deg);transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .2s,color .2s}
 .moex-drop summary:hover .moex-chev{background:var(--moex-pink);color:#fff}
@@ -103,7 +121,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* scrollable matches area: height is set in JS to --moex-rows rows */
 .moex-grid{--moex-rows:3;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin;scrollbar-color:var(--moex-pink) transparent;-webkit-overflow-scrolling:touch}
 .moex-grid::-webkit-scrollbar{width:8px}.moex-grid::-webkit-scrollbar-thumb{background:var(--moex-pink);border-radius:999px}.moex-grid::-webkit-scrollbar-track{background:transparent}
-.moex-card{position:relative;border-radius:18px;overflow:hidden;border:3px solid var(--moex-paper);box-shadow:var(--moex-shadow);aspect-ratio:3/4;background:var(--moex-blush);transition:transform .2s}
+.moex-card{position:relative;border-radius:18px;overflow:hidden;border:3px solid var(--moex-paper);box-shadow:var(--moex-shadow);aspect-ratio:2/3;background:var(--moex-blush);transition:transform .2s}
 .moex-card:hover{transform:translateY(-4px) rotate(-.6deg)}
 .moex-open{position:absolute;inset:0;width:100%;border:0;padding:0;background:none;text-align:left}
 .moex-open img{width:100%;height:100%;object-fit:cover;display:block}
@@ -181,9 +199,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .moex-lovebox{margin:26px 0 0;background:var(--moex-paper);border:2px dashed var(--moex-pink);border-radius:18px;padding:18px 20px;text-align:center;box-shadow:var(--moex-shadow)}
 .moex-lovebox h2{font-family:"Cormorant Garamond",serif;margin:0 0 4px;color:var(--moex-rose);font-size:1.8rem}
 .moex-lovebox p{margin:0}
-.moex-lrow{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:14px 0 6px}
-.moex-lrow input{flex:1 1 150px;max-width:230px;min-width:0;padding:10px 16px;border-radius:999px;border:2px solid var(--moex-pink);background:var(--moex-bg);color:var(--moex-ink);font:inherit}
-.moex-lrow span{color:var(--moex-pink);font-size:1.3rem}
+.moex-lrow{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin:14px 0 6px}
+.moex-lnames{display:flex;align-items:center;gap:8px;flex:0 1 480px;min-width:0}
+.moex-lnames input{flex:1 1 0;min-width:0;max-width:230px;padding:10px 16px;border-radius:999px;border:2px solid var(--moex-pink);background:var(--moex-bg);color:var(--moex-ink);font:inherit}
+.moex-lnames span{flex:none;color:var(--moex-pink);font-size:1.3rem}
+.moex-lrow .moex-draw{white-space:nowrap}
+@media(max-width:480px){.moex-lovebox{padding:16px 12px}.moex-lnames{flex-basis:100%;gap:6px}.moex-lnames input{padding:10px 12px}}
 .moex-pct{font-family:"Cormorant Garamond",serif;font-size:3.2rem;font-weight:700;color:var(--moex-rose);line-height:1.1}
 .moex-lres .moex-meter{max-width:380px;margin:0 auto}
 .moex-lres .moex-meter i{transition:width 1s ease-out}
@@ -224,13 +245,18 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 <header class="moex-header" id="moex-top">
   <div class="moex-wrap">
-    <h1 class="moex-title">Cupid’s Book of Fate</h1>
+    <p class="moex-eyebrow">✦ #MixsedMatch open collab ✦</p>
+    <h1 class="moex-title"><span class="moex-t1">Cupid’s</span><span class="moex-t2">Book of Fate</span></h1>
+    <svg class="moex-flourish" viewBox="0 0 260 24" aria-hidden="true"><path d="M6 12H100M160 12H254" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".7"/><path d="M130 22C118 14 113 10 113 6c0-3 2.500-4.800 5.500-4.800C122 1.200 127 3.500 130 7c3-3.500 8-5.800 11.500-5.800 3 0 5.500 1.800 5.500 4.800 0 4-5 8-17 16z" fill="currentColor"/><path d="M108 12l3-3 3 3-3 3zM146 12l3-3 3 3-3 3z" fill="currentColor" opacity=".7"/></svg>
     <p class="moex-tagline">Matches nobody planned. Hearts that worked anyway.</p>
-    <div class="moex-search" role="search">
-      <input id="moex-q" type="search" placeholder="Search by bot, creator or trope" aria-label="Search bots">
-      <span aria-hidden="true">♡</span>
+    <div class="moex-searchrow">
+      <div class="moex-search" role="search">
+        <input id="moex-q" type="search" placeholder="Bot, creator or trope" aria-label="Search bots">
+        <span aria-hidden="true">♡</span>
+      </div>
+      <button class="moex-burger" id="moex-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="moex-menu"><span></span><span></span><span></span></button>
     </div>
-    <nav class="moex-menu" aria-label="Menu">
+    <nav class="moex-menu" id="moex-menu" aria-label="Menu">
       <a href="#moex-lore">Lore</a>
       <a href="#moex-opposites">Opposites</a>
       <a href="#moex-join">Join</a>
@@ -346,9 +372,11 @@ button{font:inherit;color:inherit;cursor:pointer}
     <h2 id="moex-love-h">Love calculator</h2>
     <p>Ask the Book of Fate how well two names go together.</p>
     <div class="moex-lrow">
-      <input id="moex-n1" type="text" maxlength="30" placeholder="Your name" aria-label="Your name">
-      <span aria-hidden="true">♥</span>
-      <input id="moex-n2" type="text" maxlength="30" placeholder="Their name" aria-label="Their name">
+      <div class="moex-lnames">
+        <input id="moex-n1" type="text" maxlength="30" placeholder="Your name" aria-label="Your name">
+        <span aria-hidden="true">♥</span>
+        <input id="moex-n2" type="text" maxlength="30" placeholder="Their name" aria-label="Their name">
+      </div>
       <button class="moex-draw" id="moex-calc" type="button">Calculate</button>
     </div>
     <div class="moex-lres" id="moex-lres" aria-live="polite"></div>
@@ -564,8 +592,8 @@ $("moex-favlink").addEventListener("click",function(){cat="fav";renderCats();ren
 
 /* links and images from settings */
 document.querySelectorAll("[data-link]").forEach(function(a){var u=MOEX_SETTINGS[a.dataset.link];if(u)a.href=u});
-function setImg(u,alt,onFail){var i=new Image();i.alt=alt;i.referrerPolicy="no-referrer";i.onerror=onFail;i.src=u;return i}
-if(String(MOEX_SETTINGS.banner||"").trim()){var bi=setImg(MOEX_SETTINGS.banner.trim(),"#MixsedMatch open collab banner",function(){bi.remove()});$("moex-banner").appendChild(bi)}
+function setImg(u,alt,onFail,onOk){var i=new Image();i.alt=alt;i.referrerPolicy="no-referrer";i.onerror=onFail;if(onOk)i.onload=onOk;i.src=u;return i}
+if(String(MOEX_SETTINGS.banner||"").trim()){var bi=setImg(MOEX_SETTINGS.banner.trim(),"#MixsedMatch open collab banner",function(){bi.remove()},function(){$("moex-banner").classList.add("moex-has")});$("moex-banner").appendChild(bi)}
 
 /* pagedoll */
 function dollPh(){$("moex-doll-btn").innerHTML='<span class="moex-doll-ph" aria-hidden="true">💘</span>'}
@@ -634,6 +662,15 @@ $("moex-sw-card").addEventListener("touchend",function(e){var d=e.changedTouches
   var show=m===true||(m!==false&&(!dl||isNaN(dl)||new Date()>dl));a.hidden=!show;l.hidden=!show})();
 
 renderCats();render();
+
+/* burger menu */
+(function(){var b=$("moex-burger"),m=$("moex-menu");
+  function set(o){m.classList.toggle("moex-show",o);b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"Close menu":"Open menu")}
+  b.addEventListener("click",function(e){e.stopPropagation();set(!m.classList.contains("moex-show"))});
+  m.addEventListener("click",function(e){if(e.target.closest("a"))set(false)});
+  document.addEventListener("click",function(e){if(!m.contains(e.target))set(false)});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)});
+})();
 
 /* dropdowns: menu links and buttons that point at a section open its dropdown first */
 function openDrop(id){var s=id&&document.getElementById(id),d=s&&s.querySelector("details");if(d)d.open=true}
